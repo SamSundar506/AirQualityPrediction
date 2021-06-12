@@ -1,0 +1,195 @@
+body{
+  padding: 0;
+  margin: 0;
+}
+
+.Home{
+  height: 800px;
+
+}
+
+.navbar {
+  margin-bottom: 0 !important;
+  background-color: #161616 !important;
+  z-index: 9999;
+  border: 0 !important;
+  font-size: 12px !important;
+  line-height: 1.42857143 !important;
+  letter-spacing: 4px;
+  border-radius: 0;
+  font-family: Montserrat, sans-serif;
+  color: white;
+}
+.navbar li a, .navbar .navbar-brand {
+  color: #fff !important;
+}
+.navbar-nav li a:hover, .navbar-nav li.active a {
+  color: black !important;
+  background-color: white !important;
+  transition-duration: 0.5s;
+}
+.navbar-default .navbar-toggle {
+  border-color: transparent;
+  color: #fff !important;
+}
+
+@keyframes slide {
+  0% {
+    opacity: 0;
+    transform: translateY(70%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@-webkit-keyframes slide {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(70%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0%);
+  }
+}
+@media screen and (max-width: 768px) {
+  .col-sm-4 {
+    text-align: center;
+    margin: 25px 0;
+  }
+  .btn-lg {
+    width: 100%;
+    margin-bottom: 35px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .logo {
+    font-size: 150px;
+  }
+}
+
+.jumbotron{
+  height: 758px;
+  font-family: 'Mate SC', serif;
+  padding-top: 300px !important;
+  color: white !important;
+  background-image:linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(mike-marrah-x4QaRXytmow-unsplash.jpg);
+  background-size: cover;
+  /* background-attachment: fixed; */
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0px !important;
+}
+
+.jumbotron h1{
+  font-size: 45px !important;
+  font-family: 'Baloo Tammudu 2', cursive;
+}
+
+#pm_value{
+  width: 400px;
+  height: 60px;
+  border-radius: 20px;
+  color: black !important;
+  font-size: 30px;
+  padding-left: 15px;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.btn{
+  margin-top: 20px;
+  border-radius: 20px;
+  width: 100px;
+  height: 30px;
+  color: black;
+  font-weight: bold !important;
+  background-color: white;
+  transition: 0.5s;
+}
+
+.btn:hover{
+  color: white !important;
+  background-color: black;
+  border: 0;
+}
+
+#demo{
+  font-size: 50px;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+/* #Good{
+  display: none;
+} */
+
+.quote1{
+  height: 450px;
+}
+
+.text_style h1{
+  font-family: 'Sacramento', cursive;
+  font-size: 60px !important;
+}
+
+.quote2{
+  height: 500px;
+}
+
+#Good{
+  margin: 0 !important;
+}
+
+.text_styler h1{
+  font-family: 'Sacramento', cursive;
+  font-size: 60px !important;
+  font-weight: bold;
+}
+
+.m_quote2_pic{
+  height: 400px;
+  background-image:linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(4533108753825792.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.m_quote1 img{
+  float: right !important;
+}
+
+.m_quote1 h1{
+  padding-left: 50px;
+  padding-top: 50px !important;
+}
+
+.m_quote2_pic h1{
+  color: white;
+  font-size: 80px !important;
+}
+
+#UnHealthy_S_G{
+  padding-top: 20px;
+}
+
+.flexy{
+  display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.Hazardous_bg{
+  height: 400px;
+  background-image:linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(Air-pollution-NT-1.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+}

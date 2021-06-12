@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Air Quality Prediction</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" type="image/png" href="air-pollution-cityscape-vector-12742025-removebg-preview.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="scrollCue.css" />
+    <script src="scrollCue.min.js"></script>
+
+    <style media="screen">
+    .pulse {
+      height: 100px;
+      width: 200px;
+      overflow: hidden;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+    }
+    .pulse:after {
+      content: '';
+      display: block;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200px 100px" enable-background="new 0 0 200px 100px" xml:space="preserve"><polyline fill="none" stroke-width="3px" stroke="black" points="2.4,58.7 70.8,58.7 76.1,46.2 81.1,58.7 89.9,58.7 93.8,66.5 102.8,22.7 110.6,78.7 115.3,58.7 126.4,58.7 134.4,54.7 142.4,58.7 197.8,58.7 "/></svg>') 0 0 no-repeat;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      -webkit-animation: 2s pulse linear infinite;
+      -moz-animation: 2s pulse linear infinite;
+      -o-animation: 2s pulse linear infinite;
+      animation: 2s pulse linear infinite;
+        clip: rect(0, 0, 100px, 0);
+    }
+    .pulse:before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      left: 2px;
+      right: 2px;
+      bottom: 0;
+      top: 16px;
+      margin: auto;
+      height: 3px;
+
+    }
+
+
+    @-webkit-keyframes pulse {
+      0% {
+        clip: rect(0, 0, 100px, 0);
+        opacity: 0.4;
+      }
+      4% {
+        clip: rect(0, 66.66667px, 100px, 0);
+        opacity: 0.6;
+      }
+      15% {
+        clip: rect(0, 133.33333px, 100px, 0);
+        opacity: 0.8;
+      }
+      20% {
+        clip: rect(0, 300px, 100px, 0);
+         opacity: 1;
+      }
+
+      80% {
+        clip: rect(0, 300px, 100px, 0);
+         opacity:0;
+      }
+
+      90% {
+        clip: rect(0, 300px, 100px, 0);
+        opacity: 0;
+      }
+
+      100% {
+        clip: rect(0, 300px, 100px, 0);
+        opacity:0;
+     }
+    }
+    @keyframes pulse {
+      0% {
+        clip: rect(0, 0, 100px, 0);
+      }
+      4% {
+        clip: rect(0, 66.66667px, 100px, 0);
+      }
+      15% {
+        clip: rect(0, 133.33333px, 100px, 0);
+      }
+      20% {
+        clip: rect(0, 300px, 100px, 0);
+         opacity:1;
+      }
+
+      80% {
+        clip: rect(0, 300px, 100px, 0);
+         opacity:0;
+      }
+
+      90% {
+        opacity: 0;
+      }
+
+      100% {
+        clip: rect(0, 300px, 100px, 0);
+        opacity:0;
+     }
+
+    }
+    </style>
+  </head>
+  <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+    <div class="pulse"></div>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#myPage">Air Quality Prediction</a>
+        </div>
+        <!-- <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#about">ABOUT</a></li>
+            <li><a href="#works">WORKS</a></li>
+            <li><a href="#skills">SKILLS</a></li>
+            <li><a href="#contact">CONTACT</a></li>
+          </ul>
+        </div> -->
+      </div>
+    </nav>
+
+    <div class="jumbotron text-center Home" id="Text">
+      <h1>Enter Your PM<sub>2.5</sub></h1>
+      <input type="text" id="pm_value" /><br>
+      <button onclick="submit()" class="btn" >Submit</button><br><br><br><br>
+      <p id="demo"></p>
+    </div>
+
+    <div class="container-fluid" id="Good">
+      <div class="row">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 quote1" >
+          <div class="container-fluid">
+            <div class="row">
+
+              <div class="col-lg-4 col-md-4 col-sm-4">
+                <img src="earth-background_23-2147902185-removebg-preview.png" alt="earth" data-aos="fade-right" data-aos-duration="1000">
+              </div>
+
+              <div class="col-lg-8 col-md-8 col-sm-8 text_style">
+                <br><br><br><br>
+                <h1 class="text-center" data-aos="zoom-in" data-aos-duration="1000">Every Person expects and deserves clean air, <br>and then we act on that belief, then we will set an example <br> for the rest of the world to follow.</h1>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 quote2">
+          <div class="container-fluid">
+            <div class="row">
+
+              <div class="col-lg-8 col-md-8 col-sm-6 text_style">
+                <br><br><br><br><br><br>
+                <h1 class="text-center" data-aos="zoom-in" data-aos-duration="1000">Let the clean air blow the cobwebs from your body. Air is medicine.</h1>
+              </div>
+
+              <div class="col-lg-4 col-md-4 col-sm-4">
+                <img src="windy-weather-icon-isometric-style-vector-33418242-removebg-preview.png" alt="earth" data-aos="zoom-in" data-aos-duration="1000">
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-lg-12 col-md-12 col-sm-12 quote3">
+            <div class="row">
+              <br><br><br><br>
+
+              <div class="col-lg-12 col-md-12 col-sm-12 text_styler">
+                <h1 class="text-center" data-aos="zoom-in" data-aos-duration="1000">Thank You for Making us Live, We Owe You <br>Here Your Clean Air</h1>
+              </div>
+
+              <div class="col-lg-12 col-md-12 col-sm-12">
+                <img src="trees-forest-clipart-xl.png" alt="trees" width="100%" data-aos="zoom-in-up" data-aos-duration="1000">
+              </div>
+
+            </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container-fluid" id="Moderate">
+      <div class="row">
+
+        <div class="col-lg-12 col-md-12 col-sm-12 m_quote1">
+          <div class="row">
+
+            <div class="col-lg-12 col-md-12 col-sm-12 text_style">
+              <h1 data-aos="fade-right" data-aos-duration="1000">Sometimes all you need is a Little Fresh Air</h1>
+              <img src="281c3ac5c2f9a4e16854b10710a02a7c-removebg-preview.png" alt="cat" data-aos="zoom-in" data-aos-duration="1000">
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 text_style text-center m_quote2_pic">
+          <h1 data-aos="zoom-in" data-aos-duration="1000">Rest and breathe in the fresh air</h1>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <br><br><br>
+          <div class="row">
+            <div class="col-lg-4 col-md-3 col-sm-3">
+              <img src="i4MHvUQPywtwqKrIC5TathoPoTE.jpg" height="500px" width="370px" style="border-radius: 150px 120px;padding-left: 40px;" alt="Bindi Irwin" data-aos="zoom-in" data-aos-duration="1000">
+            </div>
+
+            <div class="col-md-3 col-sm-3">
+
+            </div>
+
+            <div class="col-lg-8 col-md-6 col-sm-6 text_style text-center">
+              <br><br><br>
+              <h1 data-aos="zoom-in" data-aos-duration="1000">I want my children and my grandchildren to live in a world with clean air, pure drinking water, and an abundance of wildlife, so I've chosen to dedicate my life to wildlife conservation so I can make the world just a little bit better</h1>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container-fluid" id="UnHealthy_S_G">
+      <div class="row">
+
+        <div class="col-lg-9 col-md-9 col-sm-9">
+          <h1 style="font-family:'Baloo Tammudu 2', cursive; font-size: 45px !important;" data-aos="zoom-in" data-aos-duration="1000">Control Measures for UnHealthy Sensitive Groups:</h1>
+          <br>
+          <ul style="font-family:'Baloo Tammudu 2', cursive; font-size: 25px !important;">
+            <li data-aos="fade-right" data-aos-duration="1010">Check daily air pollution forecasts in your area. The color-coded forecasts can let you know when the air is unhealthy in your community. Sources include local radio and TV weather reports, newspapers</li>
+            <li data-aos="fade-right" data-aos-duration="1010">Avoid exercising outdoors when pollution levels are high. When the air is bad, walk indoors in a shopping mall or gym or use an exercise machine. Limit the amount of time your child spends playing outdoors if the air quality is unhealthy</li>
+            <li data-aos="fade-right" data-aos-duration="1010">Always avoid exercising near high-traffic areas. Even when air quality forecasts are green, the vehicles on busy highways can create high pollution levels up to one-third a mile away.</li>
+            <li data-aos="fade-right" data-aos-duration="1010">Use less energy in your home. Generating electricity and other sources of energy creates air pollution. By reducing energy use, you can help improve air quality, curb greenhouse gas emissions, encourage energy independence and save money!</li>
+            <li>Don't allow anyone to smoke indoors and support measures to make all public places tobacco-free.</li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-3" style=" padding: 0 !important;">
+          <br><br><br><br><br>
+          <img style="float: right" src="set-isometric-corona-virus-on-location-lungs-vector-36443433.jpg" width="300px"alt="lungs">
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container-fluid" id="UnHealthy">
+      <div class="row">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <h1 style="font-family: 'Arvo', serif" class="text-center" data-aos="zoom-in" data-aos-duration="1010">CONTROLLING MEASURES FOR UNHEALTHY AIR</h1>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12" style="font-family:'Baloo Tammudu 2', cursive; margin: 0 !important;background-color: #f2ba5d" >
+          <h1 style="font-size: 40px; font-weight: bold;" data-aos="fade-right" data-aos-duration="2000">STAYING INDOORS:</h1>
+          <h2 style="color: white" data-aos="zoom-in" data-aos-duration="2000">Personal exposure to ambient air pollutants occurs in both indoor and outdoor environments, and the levels of exposure depend on the fractions of time an individual spends in various indoor and outdoor environments, as well as the concentrations of outdoor-source air pollutants in those indoor and outdoor environments. In the developed world, people spend about 90% of their daily time indoors on average, with about 70% of their daily time in residential homes </h2>
+          <img src="young-loving-couple-watching-tv-isometric-view-vector-13841530-removebg-preview-removebg-preview.png" alt="indoor" width="auto" height="300px" style="float: right" data-aos="zoom-in" data-aos-duration="2000">
+
+        </div>
+
+
+
+        <div class="col-lg-12 col-md-12 col-sm-12" style="font-family:'Baloo Tammudu 2', cursive; background-color: #5ebce8" >
+          <h1 style="font-size: 40px; font-weight: bold;" class="text-right" data-aos="fade-right" data-aos-duration="2000">CLEANING INDOOR AIR:</h1>
+          <h2 style="color: white" class="text-right" data-aos="zoom-in" data-aos-duration="2000">Portable or central air cleaning systems can reduce concentrations of indoor air pollutants, of either outdoor or indoor origin. MacIntosh et al. [2008] conducted an indoor air quality study to characterize particle removal efficiencies of several types of central, in-duct air filters/cleaners. The authors observed that indoor particles with diameters 0.3-0.5 µm were effectively removed by either placing a 5-inch pleated media filter (model BAYFTAH26M,</h2>
+          <img src="professional-cleaning-isometric-design-vector-10736697-removebg-preview-removebg-preview.png" alt="cleaning" width="350px" height="350px" data-aos="zoom-in" data-aos-duration="2000">
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12" style="font-family:'Baloo Tammudu 2', cursive; background-color: #ff66ff" >
+          <h1 style="font-size: 40px; font-weight: bold;" data-aos="fade-right" data-aos-duration="2000">PERSONAL PROTECTIVE EQUIPMENTS:</h1>
+          <h2 style="color: white" data-aos="zoom-in" data-aos-duration="2000">In some urban areas around the world, it is not unusual to observe individuals wearing various types of respirators on urban streets in order to reduce exposure to air pollutants. The ability of a respirator to remove contaminants from inhaled air depends on the contaminant, type of filter or adsorbent material, respirator type and conditions of use.Although, relatively inexpensive respirators with filter material for particulate matter are widely available.</h2>
+          <img src="medical-mask-coronavirus-icon-isometric-style-vector-32102805-removebg-preview-removebg-preview.png" alt="mask" width="350px" height="300px" data-aos="zoom-in" data-aos-duration="2000" style="float: right">
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container-fluid" id="Very_Unhealthy">
+      <div class="row">
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <h1 style="font-family: 'Arvo', serif" class="text-center" data-aos="zoom-in" data-aos-duration="2000">SUGGESTION TO LIVE WITH A GOOD HEALTH IN VERY HEALTHY AIR</h1>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12" style="font-family:'Baloo Tammudu 2', cursive; background-color: #4d9cc1; color:white">
+          <ul>
+            <li data-aos="zoom-in" data-aos-duration="2000"><h2><b>Even if you are healthy,</b> you may experience temporary symptoms such as irritation of the eyes, nose, and throat; coughing; phlegm; chest tightness; and shortness of breath. These symptoms should go away when air quality improves.</h2>
+</li>
+          </ul>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 flexy" style="background-color: #4d9cc1">
+          <img src="people-crowd-isometric-collection_1284-35876.jpg" alt="crowd" width="300px" height="300px" data-aos="zoom-in" data-aos-duration="2000">
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12" style="font-family:'Baloo Tammudu 2', cursive;background-color: #e7e8ea">
+          <br><br>
+          <ul>
+            <li data-aos="zoom-in" data-aos-duration="2000"><h1><b>If you have lung disease – including asthma and COPD</b> – you may not be able to breathe as deeply or as vigorously as normal, and you may experience coughing, chest discomfort, wheezing, shortness of breath, and unusual fatigue. Make sure you follow your doctor's directions about taking your medicines and following your asthma management plan. If you have any of these symptoms, reduce your exposure to particles and follow your doctor's advice. Contact your doctor if symptoms persist or worsen.</li></h1>
+          </ul>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 flexy" style="background-color: #e7e8ea">
+          <img src="depositphotos_193890690-stock-illustration-icons-for-medical-specialties-pulmonology.jpg" alt="Lungs" width="500px" height="500px" data-aos="zoom-in" data-aos-duration="2000">
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12" style="font-family:'Baloo Tammudu 2', cursive;">
+          <ul>
+            <li data-aos="zoom-in" data-aos-duration="2000"><h1><b>If you have heart or vascular disease,</b> particle exposure can cause serious problems – including worsening of your disease – in a short period of time. Do not assume that you are safe just because you do not have symptoms.</h1></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 flexy">
+          <img src="istockphoto-1216231411-612x612.jpg" alt="doctor" data-aos="zoom-in" data-aos-duration="2000">
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container-fluid" id="Hazardous">
+      <div class="row">
+
+        <div class="col-lg-4 col-md-4 col-sm-4">
+          <img src="sad-polluted-earth-poster_1308-31435.jpg" alt="polluted_earth" width="100%" height="100%" data-aos="fade-right" data-aos-duration="1000">
+        </div>
+
+        <div class="col-lg-8 col-md-8 col-sm-8">
+          <br><br><br><br><br>
+          <h1 style="font-family: 'Sacramento', cursive; font-size: 60px !important;" data-aos="zoom-in" data-aos-duration="1000">We Over-Eat, Over-Buy, and Over-Built, Spewing out our Toxic wastes upon the Earth and into the Air.</h1>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12 Hazardous_bg flexy">
+          <h1 class="text-center" style="color: white; font-family: 'Playfair Display', serif;" data-aos="zoom-in" data-aos-duration="1000">Everyone needs to take steps to protect themselves when pollution levels are “hazardous” and above. Some people are at higher risk from PM2.5 exposure. People most at risk from particle pollution exposure include those with heart or lung disease (including asthma and chronic obstructive pulmonary disease-COPD), older adults, and children. Research indicates that pregnant women, newborns, and people with certain health conditions, such as obesity or diabetes, also may be more susceptible to PM-related effects.</h1>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12" style="background-color: #a5b0b6">
+          <br><br>
+          <h1 style="font-family: 'Pacifico', cursive;color: white; font-size: 45px !important;" data-aos="fade-right" data-aos-duration="1000">Pollution is Nothing but the Resources we are not Harvesting. We Allow them to Disperse because we've been Ignorant of their Value</h1>
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12" style="background-color: #a5b0b6; margin: 0 !important; padding: 0 !important;">
+          <img src="factory-air-pollution-environmental-contamination-carbon-dioxide-emissions-toxic-factories-plants-with-fumes-smog-polluting-chimneys_168129-546.jpg" alt="industry" style="float: right">
+        </div>
+
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <h1 style="font-family: 'Arvo', serif; font-weight: bold;" class="text-center" data-aos="zoom-in" data-aos-duration="1000">WAYS TO REDUCE HAZARDOUS AIR POLLUTION</h1>
+        </div>
+
+        <div class="col-lg-9 col-md-9 col-sm-9">
+          <ul style="font-size: 25px !important; font-family: 'Do Hyeon', sans-serif;" data-aos="zoom-in" data-aos-duration="1000">
+            <li><h1>Road transportation is one of the biggest emitters of nitrogen oxides. Oxides of nitrogen are closely monitored air pollutants with an adverse effect on the healthy lung development and the overall lifetime expectancy.</h1></li>
+            <li><h1>When you have the option, take public transportation to get to work. Many cities have already invested in a good public transportation network and by choosing public transportation (even just one or two days a week) you are helping to reduce the number of cars on the road.</h1></li>
+            <li><h1>Similar concept repeats in other scientific papers. For example, the International Journal of Environmental Research and Public Health published a study that lists a myriad of health problems arising from the air contamination due to the combustion of fossil fuels.</h1></li>
+            <li><h1>Each stage of the manufacture from raw materials is accompanied by emissions of polluting particles, heavy metals, chemicals and greenhouse gases. It also takes more energy to make new items from raw materials, increasing the environmental footprint (including the air pollution that is produced) of those products, compared with those products that are made from recycled materials.</h1></li>
+            <li><h1>In countries with intensively farmed lands, agriculture is the main emitter of ammonia and other nitrogen-containing compounds like nitrous oxide or nitric oxide. Livestock farming also emits high concentrations of methane, a potent greenhouse gas, and non-methane volatile organic compounds.</h1></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <img src="isometric-highway-with-traffic-jam-3d-vector-16382268.jpg" alt="traffic" width="100%" data-aos="zoom-in" data-aos-duration="1000">
+          <img src="waste-recycle-isometric-refuse-garbage-facility-vector-22771107-removebg-preview.png" alt="recycle" width="300px" style="padding-left: 50px;padding-top: 20px;" data-aos="zoom-in" data-aos-duration="1000">
+          <img src="isometric-healthy-lifestyle-concept-vector-20543503-removebg-preview.png" alt="Healthy" width="100%" style="padding-top: 30px" data-aos="zoom-in" data-aos-duration="1000">
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+  <script>
+      document.onreadystatechange = function() {
+        if (document.readyState !== "complete") {
+          document.querySelector(
+          "body").style.visibility = "hidden";
+          document.querySelector(
+          ".pulse").style.visibility = "visible";
+        } else {
+          document.querySelector(
+          ".pulse").style.display = "none";
+          document.querySelector(
+          "body").style.visibility = "visible";
+        }
+      };
+    </script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $("#Good").hide();
+      $("#Moderate").hide();
+      $("#UnHealthy_S_G").hide();
+      $("#UnHealthy").hide();
+      $("#Very_Unhealthy").hide();
+      $("#Hazardous").hide();
+    })
+    </script>
+    <script>
+      function submit(){
+          var value = document.getElementById('pm_value').value;
+
+          if (value >= 0 && value <= 50) {
+            document.getElementById("demo").innerHTML = "Good";
+            $("#Text").css({"background-image": "linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(frank-mckenna-OD9EOzfSOh0-unsplash.jpg)"});
+            $("#Text").css({"transition": "1s"});
+            $("#Good").show();
+            AOS.init();
+            $("#Moderate").hide();
+            $("#UnHealthy_S_G").hide();
+            $("#UnHealthy").hide();
+            $("#Very_Unhealthy").hide();
+            $("#Hazardous").hide();
+            // document.querySelector("jumbotron").style.transition = "0.5s";
+          }else if (value >= 51 && value <= 100) {
+            document.getElementById("demo").innerHTML = "Moderate";
+            $("#Text").css({"background-image": "linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(herbert-goetsch-SGKQh9wNgAk-unsplash.jpg)"});
+            $("#Text").css({"transition": "1s"});
+            $("#Good").hide();
+            $("#Moderate").show();
+            AOS.init();
+            $("#UnHealthy_S_G").hide();
+            $("#UnHealthy").hide();
+            $("#Very_Unhealthy").hide();
+            $("#Hazardous").hide();
+          }else if (value >= 101 && value <= 150) {
+            document.getElementById("demo").innerHTML = "Unhealthy for sensitive Groups";
+            $("#Text").css({"background-image": "linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(naom_5e8dc19c8fafb.jpg)"});
+            $("#Text").css({"transition": "1s"});
+            $("#UnHealthy_S_G").show();
+            $("#Good").hide();
+            $("#Moderate").hide();
+            $("#UnHealthy").hide();
+            $("#Very_Unhealthy").hide();
+            $("#Hazardous").hide();
+            AOS.init();
+          }
+          else if (value >= 150 && value <= 200) {
+            document.getElementById("demo").innerHTML = "UnHealthy";
+            $("#Text").css({"background-image": "linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(Pollution-masque-Helen-Sushitskaya1920.jpg)"});
+            $("#Text").css({"transition": "1s"});
+            $("#UnHealthy").show();
+            $("#UnHealthy_S_G").hide();
+            $("#Good").hide();
+            $("#Moderate").hide();
+            $("#Very_Unhealthy").hide();
+            $("#Hazardous").hide();
+            AOS.init();
+          }
+          else if (value >= 201 && value <= 300) {
+            document.getElementById("demo").innerHTML = "Very UnHealthy";
+            $("#Text").css({"background-image": "linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(FzcdO_lQKuABrySq0lCRmc.jpg)"});
+            $("#Text").css({"transition": "1s"});
+            $("#Very_Unhealthy").show();
+            $("#UnHealthy").hide();
+            $("#UnHealthy_S_G").hide();
+            $("#Good").hide();
+            $("#Moderate").hide();
+            $("#Hazardous").hide();
+            AOS.init();
+          }
+          else if (value >= 301 && value <= 500) {
+            document.getElementById("demo").innerHTML = "Hazardous";
+            $("#Text").css({"background-image": "linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(ab02fc9a-177b-11ea-b869-0971bffac109.jpg)"});
+            $("#Text").css({"transition": "1s"});
+            $("#Hazardous").show();
+            $("#Very_Unhealthy").hide();
+            $("#UnHealthy").hide();
+            $("#UnHealthy_S_G").hide();
+            $("#Good").hide();
+            $("#Moderate").hide();
+            AOS.init();
+          }else {
+            document.getElementById("demo").innerHTML = "InValid Value";
+            $("#Text").css({"background-image": "linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(mike-marrah-x4QaRXytmow-unsplash.jpg)"});
+            $("#Text").css({"transition": "1s"});
+          }
+      }
+    </script>
+    <script>
+      AOS.init();
+    </script>
+
+    <script>
+    $(document).ready(function(){
+      // Add smooth scrolling to all links in navbar + footer link
+      $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+          // Prevent default anchor click behavior
+          event.preventDefault();
+
+          // Store hash
+          var hash = this.hash;
+
+          // Using jQuery's animate() method to add smooth page scroll
+          // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 900, function(){
+
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+          });
+        } // End if
+      });
+
+      $(window).scroll(function() {
+        $(".slideanim").each(function(){
+          var pos = $(this).offset().top;
+
+          var winTop = $(window).scrollTop();
+            if (pos < winTop + 600) {
+              $(this).addClass("slide");
+            }
+        });
+      });
+    })
+    </script>
+
+
+    <!-- <script>
+    $(document).ready(function() {
+    $("button").click(function() {
+    $("#Text").css({"background-image": "linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url(frank-mckenna-OD9EOzfSOh0-unsplash.jpg)"});
+    $("#Text").css({"transition": "1s"});
+    });
+    });
+    </script> -->
+    <!-- <script>
+      $(window).on('load', function () {
+          $(".pulse").fadeOut("slow");
+     });
+   </script> -->
+
+</html>
